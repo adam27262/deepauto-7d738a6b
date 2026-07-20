@@ -2,7 +2,8 @@ import { Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { ShoppingBag, Menu, X } from "lucide-react";
 import { useCart } from "@/lib/cart";
-import logoAsset from "@/assets/deep-auto-service-logo.jpg.asset.json";
+import logoAsset from "@/assets/deep-auto-service-logo.png.asset.json";
+import logoWhiteAsset from "@/assets/deep-auto-service-logo-white.png.asset.json";
 
 export function Navbar() {
   const [open, setOpen] = useState(false);
@@ -27,7 +28,7 @@ export function Navbar() {
             alt="Deep Auto Service"
             width={180}
             height={48}
-            className="h-10 md:h-12 w-auto object-contain"
+            className="h-12 md:h-14 w-auto object-contain"
           />
         </Link>
 
@@ -92,11 +93,11 @@ export function Footer() {
         <div>
           <div className="flex items-center gap-2 mb-4">
             <img
-              src={logoAsset.url}
+              src={logoWhiteAsset.url}
               alt="Deep Auto Service"
               width={180}
               height={48}
-              className="h-10 w-auto object-contain brightness-0 invert"
+              className="h-12 w-auto object-contain"
             />
           </div>
           <p className="text-sm leading-relaxed text-primary-foreground/80">
