@@ -77,29 +77,26 @@ function Home() {
 
 function Hero() {
   return (
-    <section id="book" className="relative min-h-[100svh] flex items-center overflow-hidden">
-      <div className="absolute inset-0">
-        <img src={heroImg} alt="Luxury black car detailed to perfection" width={1920} height={1200} className="w-full h-full object-cover" />
-        <div className="absolute inset-0 bg-[var(--gradient-hero)]" />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/60" />
-      </div>
-      <div className="container-x relative z-10 pt-32 pb-24 text-white">
-        <div className="max-w-3xl">
-          <div className="inline-flex items-center gap-2 rounded-full bg-white/10 backdrop-blur px-4 py-1.5 text-xs font-semibold tracking-widest uppercase border border-white/20 mb-6">
+    <section id="book" className="relative pt-32 pb-20 md:pt-40 md:pb-28 bg-background overflow-hidden">
+      <div className="absolute -top-40 -right-40 w-[32rem] h-[32rem] rounded-full bg-primary/10 blur-3xl" />
+      <div className="absolute -bottom-40 -left-40 w-[32rem] h-[32rem] rounded-full bg-primary/5 blur-3xl" />
+      <div className="container-x relative z-10 grid lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <div className="inline-flex items-center gap-2 rounded-full bg-primary/10 text-primary px-4 py-1.5 text-xs font-semibold tracking-widest uppercase mb-6">
             <Sparkles className="w-3.5 h-3.5" /> Toronto's premium detail studio
           </div>
-          <h1 className="font-display text-5xl md:text-7xl font-bold leading-[1.05]">
+          <h1 className="font-display text-5xl md:text-7xl font-bold leading-[1.05] text-foreground">
             Premium Auto Detailing<br />
-            <span className="italic text-[oklch(0.78_0.14_155)]">That Restores, Protects</span> & Impresses
+            <span className="italic text-primary">That Restores, Protects</span> & Impresses
           </h1>
-          <p className="mt-6 text-lg text-white/80 max-w-xl">
+          <p className="mt-6 text-lg text-muted-foreground max-w-xl">
             Serving Toronto with expert detailing, luxury car rentals, and premium auto care products —
             engineered for perfectionists.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
             <BookingDialog trigger={<button className="btn-primary hover:btn-primary-hover">Book Appointment <ArrowRight className="w-4 h-4" /></button>} />
-            <RentalDialog trigger={<button className="btn-ghost hover:bg-white/10">Rent a Vehicle</button>} />
-            <a href="#products" className="btn-ghost hover:bg-white/10">Shop Products</a>
+            <RentalDialog trigger={<button className="rounded-full px-7 py-3.5 font-semibold text-sm border border-primary text-primary hover:bg-primary hover:text-primary-foreground transition-colors">Rent a Vehicle</button>} />
+            <a href="#products" className="rounded-full px-7 py-3.5 font-semibold text-sm border border-border text-foreground hover:bg-muted transition-colors">Shop Products</a>
           </div>
           <div className="mt-12 grid grid-cols-3 gap-6 max-w-xl">
             {[
@@ -108,14 +105,19 @@ function Hero() {
               { k: "10+", v: "Years Experience" },
             ].map((s) => (
               <div key={s.k}>
-                <div className="font-display text-3xl md:text-4xl font-bold">{s.k}</div>
-                <div className="text-xs uppercase tracking-widest text-white/60 mt-1">{s.v}</div>
+                <div className="font-display text-3xl md:text-4xl font-bold text-primary">{s.k}</div>
+                <div className="text-xs uppercase tracking-widest text-muted-foreground mt-1">{s.v}</div>
               </div>
             ))}
           </div>
         </div>
+        <div className="relative">
+          <div className="absolute inset-0 bg-primary/20 blur-3xl rounded-full" />
+          <img src={heroImg} alt="Luxury black car detailed to perfection" width={1200} height={800} className="relative rounded-3xl shadow-[var(--shadow-luxury)] w-full object-cover aspect-[4/3]" />
+        </div>
       </div>
     </section>
+
   );
 }
 
@@ -180,36 +182,37 @@ function Services() {
 
 function Rental() {
   return (
-    <section id="rental" className="section-y bg-[oklch(0.13_0.02_260)] text-white overflow-hidden relative">
-      <div className="absolute -top-40 -right-40 w-96 h-96 rounded-full bg-primary/20 blur-3xl" />
+    <section id="rental" className="section-y bg-muted/40 overflow-hidden relative">
+      <div className="absolute -top-40 -right-40 w-96 h-96 rounded-full bg-primary/10 blur-3xl" />
       <div className="container-x relative grid lg:grid-cols-2 gap-12 items-center">
         <div>
-          <div className="eyebrow text-[oklch(0.78_0.14_155)]">Car Rental Services</div>
+          <div className="eyebrow">Car Rental Services</div>
           <h2 className="mt-3 font-display text-4xl md:text-5xl font-bold">Ride in confidence — rent our Black Truck.</h2>
-          <p className="mt-4 text-white/70 max-w-lg">
+          <p className="mt-4 text-muted-foreground max-w-lg">
             Reliable, powerful, and detailed to our own standard. Perfect for daily driving, moves, or business use.
           </p>
           <ul className="mt-6 space-y-3 text-sm">
             {["Immaculately maintained", "Full insurance available", "Flexible pickup times", "Delivered spotless"].map((f) => (
               <li key={f} className="flex items-center gap-2">
-                <Check className="w-4 h-4 text-[oklch(0.78_0.14_155)]" /> {f}
+                <Check className="w-4 h-4 text-primary" /> {f}
               </li>
             ))}
           </ul>
           <div className="mt-8 flex items-center gap-6">
             <div>
-              <div className="text-xs uppercase tracking-widest text-white/60">Starting at</div>
-              <div className="font-display text-5xl font-bold">$200<span className="text-lg text-white/50 font-normal">/day</span></div>
+              <div className="text-xs uppercase tracking-widest text-muted-foreground">Starting at</div>
+              <div className="font-display text-5xl font-bold text-primary">$200<span className="text-lg text-muted-foreground font-normal">/day</span></div>
             </div>
             <RentalDialog trigger={<button className="btn-primary hover:btn-primary-hover">Book Rental <Car className="w-4 h-4" /></button>} />
           </div>
         </div>
         <div className="relative">
-          <div className="absolute inset-0 bg-[var(--gradient-primary)] blur-3xl opacity-30 rounded-full" />
+          <div className="absolute inset-0 bg-[var(--gradient-primary)] blur-3xl opacity-20 rounded-full" />
           <img src={truckImg} alt="Black pickup truck rental" width={1200} height={800} loading="lazy" className="relative rounded-2xl shadow-[var(--shadow-luxury)]" />
         </div>
       </div>
     </section>
+
   );
 }
 
