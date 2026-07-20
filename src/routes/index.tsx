@@ -77,46 +77,46 @@ function Home() {
 
 function Hero() {
   return (
-    <section id="book" className="relative pt-32 pb-20 md:pt-40 md:pb-28 bg-background overflow-hidden">
-      <div className="absolute -top-40 -right-40 w-[32rem] h-[32rem] rounded-full bg-primary/10 blur-3xl" />
-      <div className="absolute -bottom-40 -left-40 w-[32rem] h-[32rem] rounded-full bg-primary/5 blur-3xl" />
-      <div className="container-x relative z-10 grid lg:grid-cols-2 gap-12 items-center">
-        <div>
-          <div className="inline-flex items-center gap-2 rounded-full bg-primary/10 text-primary px-4 py-1.5 text-xs font-semibold tracking-widest uppercase mb-6">
-            <Sparkles className="w-3.5 h-3.5" /> Toronto's premium detail studio
-          </div>
-          <h1 className="font-display text-5xl md:text-7xl font-bold leading-[1.05] text-foreground">
-            Premium Auto Detailing<br />
-            <span className="italic text-primary">That Restores, Protects</span> & Impresses
+    <section id="book" className="relative min-h-[92svh] flex items-end overflow-hidden bg-black">
+      <div className="absolute inset-0">
+        <img src={heroImg} alt="Deep Auto Service — premium detailing in Toronto" width={1920} height={1200} className="w-full h-full object-cover opacity-70" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/70 to-black/30" />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent" />
+      </div>
+      <div className="container-x relative z-10 pt-40 pb-20 text-white">
+        <div className="max-w-2xl">
+          <h1 className="font-display text-5xl md:text-7xl font-bold leading-[1.05]">
+            Premium Auto Detailing<br />That Restores, Protects, and Impresses.
           </h1>
-          <p className="mt-6 text-lg text-muted-foreground max-w-xl">
-            Serving Toronto with expert detailing, luxury car rentals, and premium auto care products —
-            engineered for perfectionists.
+          <p className="mt-6 text-lg text-white/80 max-w-xl">
+            Serving Toronto and the GTA with professional detailing services and premium automotive care products.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
-            <BookingDialog trigger={<button className="btn-primary hover:btn-primary-hover">Book Appointment <ArrowRight className="w-4 h-4" /></button>} />
-            <RentalDialog trigger={<button className="rounded-full px-7 py-3.5 font-semibold text-sm border border-primary text-primary hover:bg-primary hover:text-primary-foreground transition-colors">Rent a Vehicle</button>} />
-            <a href="#products" className="rounded-full px-7 py-3.5 font-semibold text-sm border border-border text-foreground hover:bg-muted transition-colors">Shop Products</a>
+            <BookingDialog trigger={
+              <button className="rounded-md px-7 py-4 bg-primary text-primary-foreground font-semibold hover:brightness-110 transition-all shadow-lg">
+                Book an Appointment
+              </button>
+            } />
+            <a href="#products" className="rounded-md px-7 py-4 bg-black text-white font-semibold border border-white/20 hover:bg-white/10 transition-colors">
+              Shop Auto Care Products
+            </a>
           </div>
-          <div className="mt-12 grid grid-cols-3 gap-6 max-w-xl">
+          <div className="mt-14 grid grid-cols-3 gap-6 max-w-lg">
             {[
               { k: "500+", v: "Cars Detailed" },
               { k: "4.9★", v: "Customer Rating" },
               { k: "10+", v: "Years Experience" },
             ].map((s) => (
               <div key={s.k}>
-                <div className="font-display text-3xl md:text-4xl font-bold text-primary">{s.k}</div>
-                <div className="text-xs uppercase tracking-widest text-muted-foreground mt-1">{s.v}</div>
+                <div className="font-display text-3xl md:text-4xl font-bold">{s.k}</div>
+                <div className="text-xs uppercase tracking-widest text-white/60 mt-1">{s.v}</div>
               </div>
             ))}
           </div>
         </div>
-        <div className="relative">
-          <div className="absolute inset-0 bg-primary/20 blur-3xl rounded-full" />
-          <img src={heroImg} alt="Luxury black car detailed to perfection" width={1200} height={800} className="relative rounded-3xl shadow-[var(--shadow-luxury)] w-full object-cover aspect-[4/3]" />
-        </div>
       </div>
     </section>
+
 
   );
 }
