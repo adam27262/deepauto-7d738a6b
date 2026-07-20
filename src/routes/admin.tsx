@@ -161,7 +161,7 @@ function useTable<T>(table: string, order = "created_at") {
   return useQuery<T[]>({
     queryKey: ["admin", table],
     queryFn: async () => {
-      const { data, error } = await supabase.from(table).select("*").order(order, { ascending: false });
+      const { data, error } = await (supabase as any).from(table).select("*").order(order, { ascending: false });
       if (error) throw error;
       return (data ?? []) as T[];
     },
@@ -267,7 +267,7 @@ function ProductsAdmin() {
   const qc = useQueryClient();
   const { data = [] } = useTable<any>("products", "name");
   async function update(id: string, patch: Record<string, unknown>) {
-    const { error } = await supabase.from("products").update(patch).eq("id", id);
+    const { error } = await (supabase as any).from("products").update(patch).eq("id", id);
     if (error) toast.error(error.message);
     else {
       toast.success("Updated");
