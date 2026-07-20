@@ -2,6 +2,8 @@ import { Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { ShoppingBag, Menu, X } from "lucide-react";
 import { useCart } from "@/lib/cart";
+import logoAsset from "@/assets/deep-auto-service-logo.png.asset.json";
+import logoWhiteAsset from "@/assets/deep-auto-service-logo-white.png.asset.json";
 
 export function Navbar() {
   const [open, setOpen] = useState(false);
@@ -21,13 +23,13 @@ export function Navbar() {
     <header className="fixed top-0 left-0 right-0 z-50 bg-background/90 backdrop-blur-md border-b border-border shadow-sm">
       <div className="container-x flex items-center justify-between py-4">
         <Link to="/" className="flex items-center gap-2 group">
-          <div className="w-9 h-9 rounded-full bg-[var(--gradient-primary)] grid place-items-center text-primary-foreground font-bold">
-            D
-          </div>
-          <div className="font-display font-bold text-lg leading-none text-foreground">
-            Deep Auto
-            <div className="text-[10px] tracking-[0.25em] font-sans font-medium text-muted-foreground">SERVICE</div>
-          </div>
+          <img
+            src={logoAsset.url}
+            alt="Deep Auto Service"
+            width={180}
+            height={48}
+            className="h-12 md:h-14 w-auto object-contain"
+          />
         </Link>
 
         <nav className="hidden lg:flex items-center gap-7">
@@ -90,8 +92,13 @@ export function Footer() {
       <div className="container-x py-16 grid gap-10 md:grid-cols-4">
         <div>
           <div className="flex items-center gap-2 mb-4">
-            <div className="w-10 h-10 rounded-full bg-white/15 grid place-items-center text-primary-foreground font-bold">D</div>
-            <div className="font-display font-bold text-lg">Deep Auto Service</div>
+            <img
+              src={logoWhiteAsset.url}
+              alt="Deep Auto Service"
+              width={180}
+              height={48}
+              className="h-12 w-auto object-contain"
+            />
           </div>
           <p className="text-sm leading-relaxed text-primary-foreground/80">
             Toronto's premium destination for automotive detailing, ceramic coating, and pro-grade care.
