@@ -209,8 +209,12 @@ function Rental() {
           </div>
         </div>
         <div className="relative">
-          <div className="absolute inset-0 bg-[var(--gradient-primary)] blur-3xl opacity-20 rounded-full" />
-          <img src={truckImg} alt="Black pickup truck rental" width={1200} height={800} loading="lazy" className="relative rounded-2xl shadow-[var(--shadow-luxury)]" />
+          <div className="absolute -inset-6 bg-[var(--gradient-primary)] blur-3xl opacity-20 rounded-full" />
+          <div className="relative grid grid-cols-6 grid-rows-6 gap-3 aspect-[5/4]">
+            <img src={rentalExterior.url} alt="Black Lincoln Navigator exterior at sunset" loading="lazy" className="col-span-6 row-span-4 w-full h-full object-cover rounded-2xl shadow-[var(--shadow-luxury)]" />
+            <img src={rentalInterior.url} alt="Navigator cockpit at night with city skyline" loading="lazy" className="col-span-3 row-span-2 w-full h-full object-cover rounded-xl shadow-[var(--shadow-soft)]" />
+            <img src={rentalStarlight.url} alt="Navigator rear cabin with starlight headliner" loading="lazy" className="col-span-3 row-span-2 w-full h-full object-cover rounded-xl shadow-[var(--shadow-soft)]" />
+          </div>
         </div>
       </div>
     </section>
