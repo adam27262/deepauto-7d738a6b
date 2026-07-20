@@ -46,7 +46,7 @@ function AuthPage() {
   }
 
   return (
-    <div className="min-h-screen grid place-items-center bg-gradient-to-br from-[oklch(0.13_0.02_260)] to-[oklch(0.2_0.05_155)] px-4">
+    <div className="min-h-screen grid place-items-center bg-background px-4">
       <div className="w-full max-w-md bg-card border border-border rounded-2xl shadow-[var(--shadow-luxury)] p-8">
         <Link to="/" className="text-xs text-muted-foreground hover:text-primary">← Back to site</Link>
         <h1 className="font-display text-3xl font-bold mt-3">Admin {mode === "signin" ? "Sign In" : "Sign Up"}</h1>
