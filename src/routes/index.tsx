@@ -27,6 +27,7 @@ import pShampoo from "@/assets/product-shampoo.jpg";
 import pTire from "@/assets/product-tire.jpg";
 import pCeramic from "@/assets/product-ceramic.jpg";
 import pWax from "@/assets/product-wax.jpg";
+import storefront from "@/assets/storefront.jpg.asset.json";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -330,19 +331,23 @@ function Testimonials() {
 
 function CtaBanner() {
   return (
-    <section className="section-y bg-[var(--gradient-primary)] text-primary-foreground">
-      <div className="container-x text-center">
+    <section
+      className="section-y relative text-white bg-black bg-cover bg-center bg-no-repeat"
+      style={{ backgroundImage: `url(${storefront.url})` }}
+    >
+      <div className="absolute inset-0 bg-black/70" />
+      <div className="container-x relative text-center">
         <h2 className="font-display text-4xl md:text-6xl font-bold">Ready to transform your vehicle?</h2>
-        <p className="mt-4 text-primary-foreground/85 max-w-xl mx-auto">
+        <p className="mt-4 text-white/85 max-w-xl mx-auto">
           Book online in under a minute. Our team will confirm your appointment shortly.
         </p>
         <div className="mt-8 flex flex-wrap gap-3 justify-center">
           <BookingDialog trigger={
-            <button className="rounded-full px-8 py-4 bg-white text-primary font-semibold hover:scale-[1.02] transition-transform shadow-lg">
+            <button className="rounded-full px-8 py-4 bg-primary text-primary-foreground font-semibold hover:scale-[1.02] transition-transform shadow-lg">
               Book Now
             </button>
           } />
-          <a href="#contact" className="btn-ghost hover:bg-white/10 border-white/40">Contact Us</a>
+          <a href="#contact" className="btn-ghost hover:bg-white/10 border-white/40 text-white">Contact Us</a>
         </div>
       </div>
     </section>
