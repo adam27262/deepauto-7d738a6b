@@ -162,7 +162,7 @@ function Services() {
           <h2 className="mt-3 font-display text-4xl md:text-5xl font-bold">Detailing tailored to your vehicle</h2>
           <p className="mt-4 text-muted-foreground">Every service uses professional-grade products and a meticulous, hand-crafted process.</p>
         </div>
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
           {services.map((s) => (
             <div key={s.title} className="group relative rounded-2xl overflow-hidden bg-card border border-border shadow-[var(--shadow-soft)] hover:shadow-[var(--shadow-luxury)] transition-all duration-500 hover:-translate-y-1">
               <div className="aspect-[4/3] overflow-hidden">
