@@ -2,8 +2,8 @@ import { Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { ShoppingBag, Menu, X } from "lucide-react";
 import { useCart } from "@/lib/cart";
-import logoAsset from "@/assets/deep-auto-service-logo.png.asset.json";
-import logoWhiteAsset from "@/assets/deep-auto-service-logo-white.png.asset.json";
+import logoAsset from "@/assets/deep-auto-service-logo.jpg.asset.json";
+import logoWhiteAsset from "@/assets/deep-auto-service-logo-white.jpg.asset.json";
 
 export function Navbar() {
   const [open, setOpen] = useState(false);
