@@ -19,6 +19,7 @@ import svcInterior from "@/assets/service-interior.jpg";
 import svcExterior from "@/assets/service-exterior.jpg";
 import svcCeramic from "@/assets/service-ceramic.jpg";
 import svcPaint from "@/assets/service-paint.jpg";
+import svcTinting from "@/assets/service-tinting.jpg";
 import rentalExterior from "@/assets/rental-exterior.jpg.asset.json";
 import rentalInterior from "@/assets/rental-interior.jpg.asset.json";
 import rentalStarlight from "@/assets/rental-starlight.jpg.asset.json";
