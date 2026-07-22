@@ -82,7 +82,7 @@ function Hero() {
   return (
     <section id="book" className="relative min-h-[92svh] flex items-end overflow-hidden bg-black">
       <div className="absolute inset-0">
-        <img src={heroImg} alt="Deep Auto Service — premium detailing in Toronto" width={1920} height={1200} className="w-full h-full object-cover opacity-70" />
+        <img src={storefront.url} alt="Deep Auto Services & Detailing storefront in Toronto" width={1920} height={1200} className="w-full h-full object-cover opacity-70" />
         <div className="absolute inset-0 bg-gradient-to-t from-black via-black/70 to-black/30" />
         <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent" />
       </div>
