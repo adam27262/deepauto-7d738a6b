@@ -52,6 +52,7 @@ const services = [
   { title: "Exterior Detailing", price: 200, image: svcExterior, desc: "Hand wash, decontamination, clay bar and premium sealant." },
   { title: "Ceramic Coating", price: 400, image: svcCeramic, desc: "Long-lasting hydrophobic protection with a glass-like finish." },
   { title: "Paint Correction", price: 300, image: svcPaint, desc: "Remove swirls, scratches and oxidation for showroom clarity." },
+  { title: "Ceramic Tinting", price: 200, image: svcTinting, desc: "All-round ceramic window tinting for UV protection, privacy, and a cooler cabin." },
 ];
 
 const testimonials = [
