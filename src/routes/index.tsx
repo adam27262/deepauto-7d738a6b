@@ -212,7 +212,7 @@ function Rental() {
           <div className="mt-8 flex items-center gap-6">
             <div>
               <div className="text-xs uppercase tracking-widest text-muted-foreground">Starting at</div>
-              <div className="font-display text-5xl font-bold text-primary">$200<span className="text-lg text-muted-foreground font-normal">/day</span></div>
+              <div className="font-display text-5xl font-bold text-primary">$250<span className="text-lg text-muted-foreground font-normal">/day</span></div>
             </div>
             <RentalDialog trigger={<button className="btn-primary hover:btn-primary-hover">Book Rental <Car className="w-4 h-4" /></button>} />
           </div>
