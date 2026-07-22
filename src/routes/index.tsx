@@ -19,6 +19,7 @@ import svcInterior from "@/assets/service-interior.jpg";
 import svcExterior from "@/assets/service-exterior.jpg";
 import svcCeramic from "@/assets/service-ceramic.jpg";
 import svcPaint from "@/assets/service-paint.jpg";
+import svcTinting from "@/assets/service-tinting.jpg";
 import rentalExterior from "@/assets/rental-exterior.jpg.asset.json";
 import rentalInterior from "@/assets/rental-interior.jpg.asset.json";
 import rentalStarlight from "@/assets/rental-starlight.jpg.asset.json";
@@ -51,6 +52,7 @@ const services = [
   { title: "Exterior Detailing", price: 200, image: svcExterior, desc: "Hand wash, decontamination, clay bar and premium sealant." },
   { title: "Ceramic Coating", price: 400, image: svcCeramic, desc: "Long-lasting hydrophobic protection with a glass-like finish." },
   { title: "Paint Correction", price: 300, image: svcPaint, desc: "Remove swirls, scratches and oxidation for showroom clarity." },
+  { title: "Ceramic Tinting", price: 200, image: svcTinting, desc: "All-round ceramic window tinting for UV protection, privacy, and a cooler cabin." },
 ];
 
 const testimonials = [
@@ -160,7 +162,7 @@ function Services() {
           <h2 className="mt-3 font-display text-4xl md:text-5xl font-bold">Detailing tailored to your vehicle</h2>
           <p className="mt-4 text-muted-foreground">Every service uses professional-grade products and a meticulous, hand-crafted process.</p>
         </div>
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
           {services.map((s) => (
             <div key={s.title} className="group relative rounded-2xl overflow-hidden bg-card border border-border shadow-[var(--shadow-soft)] hover:shadow-[var(--shadow-luxury)] transition-all duration-500 hover:-translate-y-1">
               <div className="aspect-[4/3] overflow-hidden">
@@ -210,7 +212,7 @@ function Rental() {
           <div className="mt-8 flex items-center gap-6">
             <div>
               <div className="text-xs uppercase tracking-widest text-muted-foreground">Starting at</div>
-              <div className="font-display text-5xl font-bold text-primary">$200<span className="text-lg text-muted-foreground font-normal">/day</span></div>
+              <div className="font-display text-5xl font-bold text-primary">$250<span className="text-lg text-muted-foreground font-normal">/day</span></div>
             </div>
             <RentalDialog trigger={<button className="btn-primary hover:btn-primary-hover">Book Rental <Car className="w-4 h-4" /></button>} />
           </div>
