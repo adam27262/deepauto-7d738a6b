@@ -165,7 +165,9 @@ function Services() {
           <p className="mt-4 text-muted-foreground">Every service uses professional-grade products and a meticulous, hand-crafted process.</p>
         </div>
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
-          {services.map((s) => (
+          {services.map((s) => {
+            const isCallForPrice = typeof s.price !== "number";
+            return (
             <div key={s.title} className="group relative rounded-2xl overflow-hidden bg-card border border-border shadow-[var(--shadow-soft)] hover:shadow-[var(--shadow-luxury)] transition-all duration-500 hover:-translate-y-1">
               <div className="aspect-[4/3] overflow-hidden">
                 <img src={s.image} alt={s.title} width={800} height={600} loading="lazy" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
@@ -178,17 +180,37 @@ function Services() {
                   </div>
                 </div>
                 <p className="mt-2 text-sm text-muted-foreground min-h-[3rem]">{s.desc}</p>
-                <BookingDialog
-                  defaultService={s.title}
-                  trigger={
-                    <button className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-primary hover:gap-2.5 transition-all">
-                      Book this service <ArrowRight className="w-4 h-4" />
-                    </button>
-                  }
-                />
+                {isCallForPrice ? (
+                  <div className="mt-4 flex flex-col gap-2">
+                    <a
+                      href="tel:+14165577455"
+                      className="inline-flex items-center justify-center gap-2 rounded-lg bg-primary text-primary-foreground px-4 py-2.5 text-sm font-semibold hover:bg-primary/90 transition-colors"
+                    >
+                      <Phone className="w-4 h-4" /> Call +1 (416) 557-7455
+                    </a>
+                    <CallbackDialog
+                      service={s.title}
+                      trigger={
+                        <button className="inline-flex items-center justify-center gap-1.5 rounded-lg border border-primary/30 text-primary px-4 py-2.5 text-sm font-semibold hover:bg-primary/5 transition-colors">
+                          Request a callback <ArrowRight className="w-4 h-4" />
+                        </button>
+                      }
+                    />
+                  </div>
+                ) : (
+                  <BookingDialog
+                    defaultService={s.title}
+                    trigger={
+                      <button className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-primary hover:gap-2.5 transition-all">
+                        Book this service <ArrowRight className="w-4 h-4" />
+                      </button>
+                    }
+                  />
+                )}
               </div>
             </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </section>
