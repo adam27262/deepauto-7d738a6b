@@ -90,9 +90,9 @@ export function Footer() {
     <footer className="bg-primary text-primary-foreground">
       <div className="container-x py-16 grid gap-10 md:grid-cols-4">
         <div>
-          <div className="flex items-center gap-2 mb-4">
+          <div className="flex items-center gap-2 mb-4 inline-block bg-white rounded-lg p-2">
             <img
-              src={logoWhiteAsset.url}
+              src={logoAsset.url}
               alt="Deep Auto Service"
               width={180}
               height={48}
