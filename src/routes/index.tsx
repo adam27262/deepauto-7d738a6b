@@ -416,8 +416,7 @@ function CallbackDialog({ service, trigger }: { service: string; trigger: React.
       name,
       email: email && email.length > 0 ? email : `${phone.replace(/[^0-9]/g, "")}@callback.local`,
       phone,
-      subject: `Callback request — ${service}`,
-      message: message && message.length > 0 ? message : `Please call me back about ${service}.`,
+      message: `[Callback request — ${service}] ${message && message.length > 0 ? message : `Please call me back about ${service}.`}`,
     });
     setLoading(false);
     if (error) {
