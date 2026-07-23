@@ -165,7 +165,9 @@ function Services() {
           <p className="mt-4 text-muted-foreground">Every service uses professional-grade products and a meticulous, hand-crafted process.</p>
         </div>
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
-          {services.map((s) => (
+          {services.map((s) => {
+            const isCallForPrice = typeof s.price !== "number";
+            return (
             <div key={s.title} className="group relative rounded-2xl overflow-hidden bg-card border border-border shadow-[var(--shadow-soft)] hover:shadow-[var(--shadow-luxury)] transition-all duration-500 hover:-translate-y-1">
               <div className="aspect-[4/3] overflow-hidden">
                 <img src={s.image} alt={s.title} width={800} height={600} loading="lazy" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
@@ -178,17 +180,37 @@ function Services() {
                   </div>
                 </div>
                 <p className="mt-2 text-sm text-muted-foreground min-h-[3rem]">{s.desc}</p>
-                <BookingDialog
-                  defaultService={s.title}
-                  trigger={
-                    <button className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-primary hover:gap-2.5 transition-all">
-                      Book this service <ArrowRight className="w-4 h-4" />
-                    </button>
-                  }
-                />
+                {isCallForPrice ? (
+                  <div className="mt-4 flex flex-col gap-2">
+                    <a
+                      href="tel:+14165577455"
+                      className="inline-flex items-center justify-center gap-2 rounded-lg bg-primary text-primary-foreground px-4 py-2.5 text-sm font-semibold hover:bg-primary/90 transition-colors"
+                    >
+                      <Phone className="w-4 h-4" /> Call +1 (416) 557-7455
+                    </a>
+                    <CallbackDialog
+                      service={s.title}
+                      trigger={
+                        <button className="inline-flex items-center justify-center gap-1.5 rounded-lg border border-primary/30 text-primary px-4 py-2.5 text-sm font-semibold hover:bg-primary/5 transition-colors">
+                          Request a callback <ArrowRight className="w-4 h-4" />
+                        </button>
+                      }
+                    />
+                  </div>
+                ) : (
+                  <BookingDialog
+                    defaultService={s.title}
+                    trigger={
+                      <button className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-primary hover:gap-2.5 transition-all">
+                        Book this service <ArrowRight className="w-4 h-4" />
+                      </button>
+                    }
+                  />
+                )}
               </div>
             </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </section>
@@ -365,6 +387,86 @@ function CtaBanner() {
     </section>
   );
 }
+
+const callbackSchema = z.object({
+  name: z.string().trim().min(2, "Please enter your name").max(80),
+  phone: z.string().trim().min(7, "Please enter a valid phone number").max(30),
+  email: z.string().trim().email().max(200).optional().or(z.literal("")),
+  message: z.string().trim().max(500).optional(),
+});
+
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger, DialogDescription } from "@/components/ui/dialog";
+
+function CallbackDialog({ service, trigger }: { service: string; trigger: React.ReactNode }) {
+  const [open, setOpen] = useState(false);
+  const [loading, setLoading] = useState(false);
+
+  async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    const fd = new FormData(e.currentTarget);
+    const raw = Object.fromEntries(fd) as Record<string, string>;
+    const parsed = callbackSchema.safeParse(raw);
+    if (!parsed.success) {
+      toast.error(parsed.error.issues[0]?.message ?? "Please check your details.");
+      return;
+    }
+    const { name, phone, email, message } = parsed.data;
+    setLoading(true);
+    const { error } = await supabase.from("contact_messages").insert({
+      name,
+      email: email && email.length > 0 ? email : `${phone.replace(/[^0-9]/g, "")}@callback.local`,
+      phone,
+      message: `[Callback request — ${service}] ${message && message.length > 0 ? message : `Please call me back about ${service}.`}`,
+    });
+    setLoading(false);
+    if (error) {
+      toast.error("Couldn't send your request. Please call us directly.");
+      return;
+    }
+    toast.success("Got it — we'll call you back shortly.");
+    (e.target as HTMLFormElement).reset();
+    setOpen(false);
+  }
+
+  return (
+    <Dialog open={open} onOpenChange={setOpen}>
+      <DialogTrigger asChild>{trigger}</DialogTrigger>
+      <DialogContent className="max-w-lg">
+        <DialogHeader>
+          <DialogTitle className="font-display text-2xl">Request a callback</DialogTitle>
+          <DialogDescription>
+            Prefer to talk now? Call{" "}
+            <a href="tel:+14165577455" className="font-semibold text-primary">+1 (416) 557-7455</a>.
+            Or leave your details and we'll call you back about {service}.
+          </DialogDescription>
+        </DialogHeader>
+        <form onSubmit={onSubmit} className="grid gap-4">
+          <div className="grid gap-2">
+            <Label htmlFor="cb-name">Full name</Label>
+            <Input id="cb-name" name="name" required maxLength={80} />
+          </div>
+          <div className="grid gap-2">
+            <Label htmlFor="cb-phone">Phone number</Label>
+            <Input id="cb-phone" name="phone" type="tel" required maxLength={30} placeholder="+1 (555) 000-0000" />
+          </div>
+          <div className="grid gap-2">
+            <Label htmlFor="cb-email">Email <span className="text-muted-foreground font-normal">(optional)</span></Label>
+            <Input id="cb-email" name="email" type="email" maxLength={200} />
+          </div>
+          <div className="grid gap-2">
+            <Label htmlFor="cb-message">Vehicle / details <span className="text-muted-foreground font-normal">(optional)</span></Label>
+            <Textarea id="cb-message" name="message" rows={3} maxLength={500} placeholder="e.g. 2022 BMW M4 — satin emerald wrap" />
+          </div>
+          <Button type="submit" disabled={loading} className="w-full">
+            {loading ? "Sending…" : "Request callback"}
+          </Button>
+        </form>
+      </DialogContent>
+    </Dialog>
+  );
+}
+
+
 
 const contactSchema = z.object({
   name: z.string().trim().min(2).max(80),
