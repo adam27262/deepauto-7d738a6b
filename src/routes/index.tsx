@@ -20,6 +20,7 @@ import svcExterior from "@/assets/service-exterior.jpg";
 import svcCeramic from "@/assets/service-ceramic.jpg";
 import svcPaint from "@/assets/service-paint.jpg";
 import svcTinting from "@/assets/service-tinting.jpg";
+import svcWrapping from "@/assets/service-wrapping.jpg.asset.json";
 import rentalExterior from "@/assets/rental-exterior.jpg.asset.json";
 import rentalInterior from "@/assets/rental-interior.jpg.asset.json";
 import rentalStarlight from "@/assets/rental-starlight.jpg.asset.json";
@@ -53,6 +54,7 @@ const services = [
   { title: "Ceramic Coating", price: 400, image: svcCeramic, desc: "Long-lasting hydrophobic protection with a glass-like finish." },
   { title: "Paint Correction", price: 300, image: svcPaint, desc: "Remove swirls, scratches and oxidation for showroom clarity." },
   { title: "Ceramic Tinting", price: 200, image: svcTinting, desc: "All-round ceramic window tinting for UV protection, privacy, and a cooler cabin." },
+  { title: "Car Wrapping", price: "Call for Pricing", image: svcWrapping.url, desc: "Premium vinyl wraps in gloss, matte, satin and custom finishes to transform your vehicle's look." },
 ];
 
 const testimonials = [
@@ -171,7 +173,9 @@ function Services() {
               <div className="p-6">
                 <div className="flex items-baseline justify-between">
                   <h3 className="font-display text-xl font-semibold">{s.title}</h3>
-                  <div className="text-primary font-bold">from ${s.price}</div>
+                  <div className="text-primary font-bold">
+                    {typeof s.price === "number" ? `from $${s.price}` : s.price}
+                  </div>
                 </div>
                 <p className="mt-2 text-sm text-muted-foreground min-h-[3rem]">{s.desc}</p>
                 <BookingDialog
